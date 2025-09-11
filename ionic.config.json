@@ -1,0 +1,7 @@
+{
+  "name": "newTasky",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
