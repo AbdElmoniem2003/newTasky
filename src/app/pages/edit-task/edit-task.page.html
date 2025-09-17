@@ -1,0 +1,109 @@
+<ion-header>
+
+  <ion-toolbar>
+
+    <ion-button fill="clear" class="reverse" slot="start" (click)="navCtrl.pop()">
+      <ion-icon slot="icon-only" src="../../../assets/imgs/Arrow - Left.svg"></ion-icon>
+    </ion-button>
+
+    <ion-label>Edit {{'Task Name'}}</ion-label>
+
+  </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <div class="container">
+
+    <form [formGroup]="editForm">
+
+      <div class="add-img" [ngClass]="renderImg?'fit-added':''">
+        <!-- before adding an image -->
+        @if(!renderImg){
+        <div class="ion-activatable" (click)="addImage()">
+          <ion-ripple-effect></ion-ripple-effect>
+          <ion-img src="../../../assets/imgs/add-img.svg"></ion-img>
+          <ion-label color="primary">Add Img</ion-label>
+        </div>
+        }
+
+        <!-- after the image is added -->
+        @if(renderImg){<img [src]="renderImg" (click)="addImage(renderImg)">}
+      </div>
+
+      <div class="ip-div">
+
+        <ion-label>Task Title</ion-label>
+        <ion-item lines="none">
+          <ion-input formControlName="title" placeholder="Enter title here..." [value]="todoToEdit.title"></ion-input>
+        </ion-item>
+
+      </div>
+
+      <div class="ip-div">
+
+        <ion-label>Task Description</ion-label>
+        <ion-item lines="none" class="textarea">
+          <ion-textarea formControlName="desc" placeholder="Enter description here..." [value]="todoToEdit.desc"
+            [autoGrow]="true"></ion-textarea>
+        </ion-item>
+
+      </div>
+
+      <div class="ip-div">
+
+        <ion-label>Priority</ion-label>
+        <ion-item lines="none" class="select">
+          <ion-icon slot="start" name="flag-outline" color="primary"></ion-icon>
+          <ion-select formControlName="priority" toggleIcon="" expandedIcon="" [value]="todoToEdit.priority" mode="ios"
+            interface="action-sheet">
+            <ion-select-option value="low">low Priority</ion-select-option>
+            <ion-select-option value="medium">medium Priority</ion-select-option>
+            <ion-select-option value="high">high Priority</ion-select-option>
+          </ion-select>
+          <ion-icon slot="end" src="../../../assets/imgs/down-arrow.svg"></ion-icon>
+        </ion-item>
+
+      </div>
+
+
+      <div class="ip-div">
+
+        <ion-label>Status</ion-label>
+        <ion-item lines="none" class="select">
+          <ion-icon slot="start" name="flag-outline" color="primary"></ion-icon>
+          <ion-select formControlName="status" toggleIcon="" expandedIcon="" [value]="todoToEdit.status" mode="ios"
+            interface="action-sheet">
+            <ion-select-option value="waiting">waiting</ion-select-option>
+            <ion-select-option value="inprogress">inprogress</ion-select-option>
+            <ion-select-option value="finished">finished</ion-select-option>
+          </ion-select>
+          <ion-icon slot="end" src="../../../assets/imgs/down-arrow.svg"></ion-icon>
+        </ion-item>
+
+      </div>
+
+
+      <div class="ip-div">
+
+        <ion-label>Due date</ion-label>
+        <ion-item lines="none">
+          <ion-label (click)="pickDate()">
+            {{(editForm.get('dueDate').value|date:'dd MMMM ,yyyy')||"choose due date..."}}
+          </ion-label>
+          <ion-icon slot="end" src="../../../assets/imgs/calendar.svg"></ion-icon>
+        </ion-item>
+      </div>
+
+    </form>
+
+    <ion-button color="primary" [disabled]="editForm.invalid" (click)="editTodo()">
+      <ion-label> Apply Edittions</ion-label>
+    </ion-button>
+
+  </div>
+
+
+</ion-content>

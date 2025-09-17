@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button fill="clear" class="reverse" slot="start" (click)="navCtrl.pop()">
+      <ion-icon slot="icon-only" src="../../../assets/imgs/Arrow - Left.svg"></ion-icon>
+    </ion-button>
+    <ion-label>Task Details</ion-label>
+    <ion-button fill="clear" class="reverse" slot="end" (click)="openOptions($event)">
+      <ion-icon slot="icon-only" name="ellipsis-vertical" color="dark"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="container">
+
+    @if(todo){
+    <img [lazyLoad]="`${imgKey}${todo.image}`" [defaultImage]="'../../../assets/imgs/alt-image.svg'" alt="">
+
+    <div class="texts fade-in">
+      <ion-label>
+        {{todo.title}}
+      </ion-label>
+      <p>
+        {{todo.desc}}
+      </p>
+    </div>
+
+    <div class="data fade-in">
+      <div>
+
+        <div class="date">
+          <span>End Date</span>
+          <p>{{todo.createdAt|date:'dd MMMM, yyyy'}}</p>
+        </div>
+        <ion-icon src="../../../assets/imgs/calendar.svg"></ion-icon>
+      </div>
+
+      <div>
+        <ion-label>{{todo.status}}</ion-label>
+        <ion-icon src="../../../assets/imgs/down-arrow.svg" slot="end"></ion-icon>
+      </div>
+
+      <div>
+        <ion-icon slot="start" name="flag-outline" color="primary"></ion-icon>
+        <ion-label>{{todo.priority}} Priority</ion-label>
+        <ion-icon slot="end" src="../../../assets/imgs/down-arrow.svg"></ion-icon>
+      </div>
+    </div>
+
+
+    <qrcode class="fade-in reverse" [qrdata]="generateQRData(todo)" [width]="326" [colorLight]="'#fffff00'">
+    </qrcode>
+    }
+
+  </div>
+
+</ion-content>

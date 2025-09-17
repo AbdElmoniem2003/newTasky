@@ -1,0 +1,46 @@
+<ion-content>
+
+
+  <div class="container">
+
+    <img src="../../../assets/imgs/ART.svg" alt="">
+
+    <form [formGroup]="loginForm">
+
+      <ion-label>Login</ion-label>
+
+      <div class="inputs">
+
+        @if(loginForm.get('phone').hasError('invalidPhoneNumber')){
+        <span class="inValidPhone">the entered number is not valid in {{country.countryNameLocal}}</span>}
+        <ion-item lines="none">
+          <!-- Custom Picker for country -->
+          <div class="country ion-activatable" slot="start" (click)="pickCountry()">
+            <ion-ripple-effect></ion-ripple-effect>
+            <img src="https://flagcdn.com/32x24/{{country.countryCode.toLowerCase()}}.png"
+              [alt]="country.countryNameEn">
+            <ion-label>+{{country.countryCallingCode}}</ion-label>
+            <ion-icon name="chevron-down-outline"></ion-icon>
+          </div>
+
+          <ion-input class="phone" formControlName="phone" placeholder="123 456-7890"></ion-input>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-input slot="start" formControlName="password" placeholder="Password" type="password"
+            #passwordIP></ion-input>
+          <ion-icon [name]="passwordIP.type=='text'?'eye-off-outline':'eye-outline'"
+            (click)="passwordIP.type=='text'?passwordIP.type='password': passwordIP.type='text'"></ion-icon>
+        </ion-item>
+      </div>
+      <div class="links">
+        <ion-button (click)="login()">Sign In</ion-button>
+        <p>Didn’t have any account? <strong [routerLink]="'/register'">Sign Up here</strong></p>
+      </div>
+
+    </form>
+
+  </div>
+
+
+</ion-content>

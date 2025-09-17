@@ -1,0 +1,46 @@
+  ion-list {
+    --padding-top: 8px;
+    --padding-start: 16px;
+    --padding-bottom: 8px;
+    --padding-end: 16px;
+    background: var(--ion-background-color);
+
+
+    ion-item {
+      width: fit-content;
+      min-height: 36px;
+
+      &::part(native) {
+        --background: var(--ion-background-color);
+      }
+
+      ion-button {
+        min-height: 44px;
+        --padding-top: 0;
+        --padding-start: 0;
+        --padding-bottom: 0;
+        --padding-end: 0;
+        border: none;
+        background-color: transparent;
+        text-align: center;
+        font-weight: 500;
+        font-family: medium;
+        font-size: 16px;
+        line-height: 24px;
+        vertical-align: middle;
+        display: flex;
+        align-items: center;
+
+      }
+
+    }
+
+    ion-item:first-of-type ion-button {
+      --ion-color-primary: var(--dark-text);
+    }
+
+    ion-item:last-of-type ion-button {
+      --ion-color-primary: var(--waiting-text);
+      border-bottom: none;
+    }
+  }

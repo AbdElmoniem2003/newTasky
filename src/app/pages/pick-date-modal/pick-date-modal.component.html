@@ -1,0 +1,11 @@
+<ion-content>
+  <ion-datetime dir="ltr" mode="ios" color="primary" size="cover" #dateTime [presentation]="presentation||'date-time'"
+    [max]="maxDate" [locale]="'en-UK'">
+    <ion-buttons slot="buttons">
+      <!-- <ion-button color="dark" fill="clear" (click)="close()">تجاهل</ion-button>
+      <ion-button color="primary" fill="clear" (click)="sellect()">تأكيد</ion-button> -->
+      <ion-button color="dark" fill="clear" (click)="close()">Dismiss</ion-button>
+      <ion-button color="primary" fill="clear" (click)="sellect()">Confirm</ion-button>
+    </ion-buttons>
+  </ion-datetime>
+</ion-content>

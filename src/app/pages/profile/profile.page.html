@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button fill="clear" class="reverse" slot="start" (click)="navCtrl.pop()">
+      <ion-icon slot="icon-only" src="../../../assets/imgs/Arrow - Left.svg"></ion-icon>
+    </ion-button>
+    <ion-label>Profile</ion-label>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="container">
+
+
+    <div class="profile">
+
+      <div>
+        <div>
+          <p>Name</p>
+          <strong>{{profile.displayName}}</strong>
+        </div>
+      </div>
+      <div>
+        <div>
+          <p>phone</p>
+          <strong>{{profile.username}}</strong>
+        </div>
+        <ion-button fill="clear" (click)="copy(profile.username)">
+          <ion-icon slot="icon-only" src="../../../assets/imgs/copy.svg"></ion-icon>
+        </ion-button>
+      </div>
+      <div>
+        <div>
+          <p>level</p>
+          <strong>{{profile.level}}</strong>
+        </div>
+      </div>
+      <div>
+        <div>
+          <p>Years of experience</p>
+          <strong>{{profile.experienceYears}}</strong>
+        </div>
+      </div>
+      <div>
+        <div>
+          <p>Location</p>
+          <strong>{{profile.address}}</strong>
+        </div>
+      </div>
+
+
+    </div>
+
+
+
+  </div>
+
+
+</ion-content>

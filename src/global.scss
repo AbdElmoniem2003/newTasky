@@ -34,4 +34,180 @@
 
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import "@ionic/angular/css/palettes/dark.system.css";
+// @import "@ionic/angular/css/palettes/dark.system.css";
+
+
+:root {}
+
+
+// rename fonts anc remove un used ones
+@font-face {
+  font-family: 'regular';
+  src: url('./assets/fonts/DM_Sans/DMSans-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'light';
+  src: url('./assets/fonts/DM_Sans/DMSans-Light.ttf');
+}
+
+@font-face {
+  font-family: 'semiBold';
+  src: url('./assets/fonts/DM_Sans/DMSans-SemiBold.ttf');
+}
+
+@font-face {
+  font-family: 'medium';
+  src: url('./assets/fonts/DM_Sans/DMSans-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'bold';
+  src: url('./assets/fonts/DM_Sans/DMSans-Bold.ttf');
+}
+
+* {
+  font-family: "regular";
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  scrollbar-width: none !important;
+}
+
+// ==================================================================
+.ready-QR-code {
+  visibility: hidden;
+  background: transparent;
+  --background: transparent;
+  --ion-background-color: transparent;
+}
+
+.barcode-scanner-modal {
+  visibility: visible;
+  z-index: 20202020;
+}
+
+// ==================================================================
+
+ion-button {
+  --padding-top: 0px !important;
+  --padding-end: 0px !important;
+  --padding-bottom: 0px !important;
+  --padding-start: 0px !important;
+}
+
+
+.time-modal {
+  --height: 350px;
+  --width: 375px;
+  --border-radius: 1em;
+}
+
+
+.fade-in {
+  animation: fadeIn alternate 0.3s ease-in-out;
+}
+
+ion-popover.task-options {
+  --width: 82px;
+  --height: 97px;
+  --border-radius: 12px;
+  --box-shadow: 1px 4px 16px 0px #00000030;
+}
+
+ion-modal.country-modal {
+  --width: 375px;
+  --border-radius: 1em;
+}
+
+ion-header {
+  padding-top: var(--ion-safe-area-top, env(safe-area-inset-top, 0px));
+
+  ion-toolbar {
+    ion-label {
+      padding-left: 8px;
+    }
+
+    ion-button {
+      min-width: 24px;
+      min-height: 24px;
+      overflow: hidden;
+      --border-radius: 50%;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+body.dark {
+
+  &.scanning-mode {
+    --background: transparent !important;
+    --ion-background-color: transparent !important;
+    background: transparent !important;
+  }
+
+  .reverse {
+    filter: invert(1);
+  }
+
+  ion-alert {
+    --background: var(--ion-background-color) !important;
+    --ion-color-primary: var(--dark-text);
+  }
+
+  ion-action-sheet {
+    --background: var(--ion-background-color) !important;
+    --button-background-selected: var(--ion-background-color) !important;
+    --ion-color-primary: var(--dark-text);
+  }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}

@@ -1,0 +1,50 @@
+.scanner-content {
+  --background: transparent !important;
+  --ion-background-color: transparent !important;
+  background: transparent !important;
+}
+
+.scanner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  padding: 22px;
+  align-items: flex-start;
+  color: white;
+  visibility: visible;
+
+  ion-button {
+    min-width: 40px;
+    min-height: 40px;
+    --padding-start: 10px;
+    --padding-end: 10px;
+    --padding-top: 10px;
+    --padding-bottom: 10px;
+  }
+
+  ion-label {
+    font-size: 18px;
+    font-family: Bold;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.scanBox {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 8888;
+  box-shadow: 0 0 100vh 200vw #000000b5;
+  width: 250px;
+  height: 250px;
+  border: 1px solid var(--dark-text);
+  visibility: visible;
+}

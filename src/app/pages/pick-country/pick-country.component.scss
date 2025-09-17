@@ -1,0 +1,55 @@
+.countries {
+  max-width: 768px;
+  min-width: 375px;
+  margin: 0 auto;
+  padding: 16px;
+  overflow: scroll;
+
+  ion-input {
+    border: 0.5px solid var(--inprogress-text);
+    border-radius: 15px;
+    --padding-start: 16px;
+    margin-bottom: 10px;
+    --highlight-color: transparent;
+  }
+
+  .country {
+    overflow: hidden;
+    position: relative;
+    border-bottom: 1px solid var(--inprogress-text);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 16px;
+
+    ion-label {
+      font-weight: 500;
+      font-family: semiBold;
+      color: var(--inprogress-text);
+      font-size: 14px;
+    }
+
+    ion-label:last-of-type {
+      margin-left: auto;
+    }
+  }
+
+  .empty {
+    display: flex;
+    flex-flow: column;
+    gap: 16px;
+    align-items: center;
+
+    ion-img {
+      width: 120px;
+      height: 140px;
+    }
+
+    ion-label {
+      font-size: 22px;
+      font-family: 'bold';
+      text-shadow: 1px 1px 2px var(--inprogress-text);
+    }
+  }
+
+}

@@ -1,0 +1,141 @@
+ion-header {
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+  gap: 24px;
+  height: 48px;
+
+  ion-toolbar {
+    max-width: 768px;
+    padding: 0 22px;
+
+    ion-label {
+      font-weight: 700;
+      font-family: bold;
+      font-size: 16px;
+      line-height: 24px;
+      color: var(--dark-text);
+    }
+
+    ion-button {
+      ion-icon {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+}
+
+
+.container {
+  max-width: 768px;
+  height: 100vh;
+  padding: 16px 0;
+  margin: 0 auto;
+  padding: 0 22px;
+  padding-right: 22px;
+  padding-left: 22px;
+  display: flex;
+  flex-flow: column;
+  gap: 16px;
+
+
+  >app-custom-image,
+  >img {
+    height: 225px;
+    object-fit: contain;
+
+    img {
+      object-fit: contain;
+    }
+  }
+
+  .texts {
+    display: flex;
+    flex-flow: column;
+    gap: 8px;
+
+
+    ion-label {
+      font-weight: 700;
+      font-family: bold;
+      font-size: 24px;
+      line-height: 32px;
+      color: var(--dark-text);
+    }
+
+    p {
+      font-weight: 400;
+      font-family: regular;
+      font-size: 14px;
+      line-height: 24px;
+      color: #24252C99;
+    }
+
+  }
+
+  .data {
+    height: 166px;
+    display: flex;
+    flex-flow: column;
+    gap: 8px;
+
+
+    >div {
+      height: 50px;
+      padding: 0 10px 0 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-radius: 10px;
+      background-color: var(--light-primary);
+
+      >div {
+        span {
+          font-weight: 400;
+          font-family: regular;
+          font-size: 9px;
+          line-height: 100%;
+          color: var(--p-color);
+        }
+
+        p {
+          font-weight: 400;
+          font-family: regular;
+          font-size: 14px;
+          line-height: 24px;
+          color: var(--dark-text);
+        }
+      }
+
+      ion-icon {
+        --ion-color-primary: var(--details-color);
+        width: 24px;
+        height: 24px;
+
+        &:last-of-type {
+          margin-left: auto;
+        }
+      }
+
+      ion-label {
+        color: var(--details-color);
+        font-weight: 700;
+        font-family: bold;
+        font-size: 16px;
+        line-height: 20px;
+        text-transform: capitalize;
+        letter-spacing: 0.2px;
+      }
+    }
+
+
+  }
+
+  qrcode {
+    width: fit-content;
+    margin: 0 auto;
+  }
+
+}

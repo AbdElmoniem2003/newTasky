@@ -1,0 +1,138 @@
+<ion-header>
+  <ion-toolbar>
+    <h3 slot="start">Logo</h3>
+
+    <div class="buttons" slot="end">
+      <ion-button fill="clear" color="primary" class="reverse" routerLink="/profile">
+        <ion-icon slot="icon-only" src="../../../assets/imgs/person.svg"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" color="primary" (click)="logOut()">
+        <ion-icon slot="icon-only" src="../../../assets/imgs/out.svg"></ion-icon>
+      </ion-button>
+    </div>
+  </ion-toolbar>
+
+  <div class="filter">
+    <ion-label>My Tasks</ion-label>
+    <ion-segment class="fade-in" [scrollable]="true" value="all" mode="md" (ionChange)="filter($event)">
+      <ion-segment-button value="all">all</ion-segment-button>
+      <ion-segment-button value="inprogress">inprogress</ion-segment-button>
+      <ion-segment-button value="waiting">waiting</ion-segment-button>
+      <ion-segment-button value="finished">finished</ion-segment-button>
+    </ion-segment>
+  </div>
+
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)" pullFactor="0.8" pullMin="60" pullMax="120">
+    <ion-refresher-content refreshingSpinner="bubbles"></ion-refresher-content>
+  </ion-refresher>
+
+  <!-- at data loaded -->
+  <div class="container">
+    @if(!isloading && !isEmpty && !isError){
+
+    @if(items.length){
+
+    @for (item of items; track $index) {
+    <div class="task ion-activatable fade-in" (click)="toDetails(item)">
+
+      <ion-ripple-effect></ion-ripple-effect>
+
+      <!-- caching Compo -->
+      <!-- <app-custom-image [mainImg]="item.image"></app-custom-image> -->
+      <img [lazyLoad]="`${imgKey}${item.image}`" [defaultImage]="'../../../assets/imgs/alt-image.svg'" alt="">
+
+      <div class="task-content">
+
+        <div>
+          <strong>{{item.title}}</strong>
+          <span title="waiting" [title]="item.status">{{item.status}}</span>
+        </div>
+        <div>
+          <p>{{item.desc}}</p>
+        </div>
+        <div>
+          <div class="status" [title]="item.priority">
+            <ion-icon name="flag-outline" slot="start"></ion-icon>
+            <ion-label>{{item.priority}}</ion-label>
+          </div>
+          <span>{{item.createdAt|date:'dd/MM/yyyy'}}</span>
+        </div>
+
+      </div>
+
+      <ion-button fill="clear" slot="end" color="primary">
+        <ion-icon name="ellipsis-vertical" color="dark"></ion-icon>
+      </ion-button>
+
+    </div>
+    }
+    }
+    }
+
+    @if(isloading){
+    @for (item of [1,2,3,4,5,6]; track $index) {
+    <div class="task loading">
+
+
+      <ion-skeleton-text class="img" animated></ion-skeleton-text>
+
+      <div class="task-content">
+        <div>
+          <ion-skeleton-text animated></ion-skeleton-text>
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </div>
+        <div>
+          <ion-skeleton-text></ion-skeleton-text>
+        </div>
+        <div>
+          <ion-skeleton-text animated class="status"> </ion-skeleton-text>
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </div>
+
+      </div>
+
+      <ion-button fill="clear" slot="end" color="primary">
+        <ion-skeleton-text animated=""></ion-skeleton-text>
+      </ion-button>
+
+    </div>
+    }
+    }
+
+    @if(isError){
+    <div class="error fade-in">
+      Check Your Internet Connection
+    </div>
+    }
+    @if(isEmpty){
+    <div class="empty fade-in">
+      <ion-img src="../../../assets/imgs/empty-transparent-bg.png"></ion-img>
+      <ion-label>No tasks Found. </ion-label>
+    </div>
+    }
+
+    @if(!isloading){
+    <ion-buttons>
+      <ion-button color="secondary" fill="solid" (click)="runScanner()">
+        <ion-icon src="../../../assets/imgs/qrBtn.svg"></ion-icon>
+      </ion-button>
+      <ion-button color="primary" fill="solid" routerLink="/add-task">
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    }
+
+  </div>
+
+
+  <ion-infinite-scroll threshold="25%" [disabled]="stopLoading" position="bottom" (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more tasks...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+
+</ion-content>

@@ -1,0 +1,22 @@
+<div class="countries">
+
+  <ion-input type="text" placeholder="search some countries" (ionChange)="search($event)"></ion-input>
+
+  @for (country of searchCountries; track $index) {
+  <div class="country ion-activatable" (click)="dismiss(country)">
+    <ion-ripple-effect></ion-ripple-effect>
+    <img src="https://flagcdn.com/32x24/{{country.countryCode.toLowerCase()}}.png" [alt]="country.countryNameEn">
+    <ion-label>{{country.countryNameLocal}}</ion-label>
+    <ion-label slot="end">{{country.countryCallingCode}}</ion-label>
+  </div>
+  }
+
+  @if(!searchCountries.length){
+  <div class="empty">
+    <ion-img src="../../../assets/imgs/empty-transparent-bg.png"></ion-img>
+    <ion-label>No Countries Found</ion-label>
+  </div>
+  }
+
+
+</div>

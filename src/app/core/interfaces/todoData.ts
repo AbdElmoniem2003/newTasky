@@ -1,0 +1,33 @@
+export class TodoData {
+
+  createdAt
+    :
+    string
+  desc
+    :
+    string
+  image
+    :
+    string
+  priority
+    :
+    string
+  status
+    :
+    string
+  title
+    :
+    string
+  updatedAt
+    :
+    string
+  user
+    :
+    string
+  __v
+    :
+    number
+  _id
+    :
+    string
+}
