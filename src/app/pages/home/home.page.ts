@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { TodoBody } from 'src/app/core/interfaces/todo';
 import { TodoData } from 'src/app/core/interfaces/todoData';
 import { ScanningEnum } from 'src/app/core/inums/scanning.enum';
+import { TodoStatus } from 'src/app/core/inums/status.enum';
 import { AuthService } from 'src/app/core/services/auth-service/auth.service';
 import { CameraService } from 'src/app/core/services/camera-service/camera.service';
 import { DataService } from 'src/app/core/services/data-service/data.service';
@@ -30,6 +31,7 @@ export class HomePage {
   stopLoading: boolean = false;
   imgKey = environment.baseURL + 'images/'
 
+  statusEnum = TodoStatus
   filterStatus: string = 'all';
   refreshSubscription: Subscription;
 
@@ -54,9 +56,11 @@ export class HomePage {
           this.items = this.items.filter(todo => { return todo._id !== res.todo._id })
           return;
         } else {
+          console.log(this.filterStatus)
           const found = this.items.find(todo => { return todo._id == res.todo._id });
           if (!found) this.items.unshift(res.todo);
-          if (found) this.items[this.items.indexOf(found)] = res.todo
+          if (found) this.items[this.items.indexOf(found)] = res.todo;
+          if (this.filterStatus != 'all') this.items = this.items.filter(todo => { return todo.status == this.filterStatus })
         };
         this.items.length > 0 ? this.showContent() : this.showEmpty();
       }
@@ -73,10 +77,10 @@ export class HomePage {
     this.showLoading();
     this.dataService.getData(this.todosEndPoint).subscribe({
       next: (res: TodoData[]) => {
-        this.items = res;
-        this.items = (res.length > 20) ? this.items.concat(res) : res;
+        // this.items = res;
+        this.items = this.skip > 1 ? this.items.concat(res) : res;
         this.items.length ? this.showContent(ev) : this.showEmpty(ev);
-        this.stopLoading = (res.length < 20);
+        this.stopLoading = res.length != 20
       }, error: () => {
         this.showError(ev);
       },
@@ -135,15 +139,6 @@ export class HomePage {
     this.getData(ev)
   }
 
-  filter(ev: any) {
-    if (this.filterStatus == ev.target.value) return;
-    this.skip = 0;
-    this.showLoading()
-    this.filterStatus = ev.target.value;
-    this.getData()
-  }
-
-
   /* ===================================================  SCANNING LOGIC  ===================================================== */
   async runScanner() {
     if (Capacitor.getPlatform() == 'web') return;
@@ -180,7 +175,8 @@ export class HomePage {
     })
   }
 
-  // For Image Scanning
+
+  // ==================================================   For Image Scanning
   async scanImage() {
     const photo: Photo = await this.camerService.getImage();
     if (!photo) return;
@@ -200,25 +196,6 @@ export class HomePage {
       })
   }
 
-  // // for Camera Scanning
-  // async scanData() {
-  //   document.querySelector('body').classList.add('ready-QR-code')
-  //   await BarcodeScanner.scan({
-  //     formats: [BarcodeFormat.QrCode]
-  //   }).then(dataScanned => {
-  //     const data = dataScanned.barcodes[0].rawValue;
-  //     const todo: TodoBody = JSON.parse(data);
-  //     // Add todo to the scanning user
-  //     this.addTodo(todo)
-  //   })
-  //     .catch(err => {
-  //       this.functionsService.genericToast({ message: err.error.message })
-  //     }).finally(() => {
-  //       document.querySelector('body').classList.remove('ready-QR-code')
-  //     })
-  // }
-
-
   /*   add Todo   */
   addTodo(todo: TodoBody) {
     this.dataService.postData(`todos`, todo).subscribe({
@@ -235,7 +212,6 @@ export class HomePage {
     })
   }
   /*================================================================================================================================= */
-
 
   ngOnDestroy() {
     this.refreshSubscription.unsubscribe();

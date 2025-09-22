@@ -6,7 +6,7 @@ import { FunctionsService } from 'src/app/core/services/functions-service/functi
 import { RefreshService } from 'src/app/core/services/refresher-service/refresher.service';
 import { TaskOptionsComponent } from '../task-options/task-options.component';
 import { environment } from 'src/environments/environment';
-import { TodoBody } from 'src/app/core/interfaces/todo';
+
 
 @Component({
   selector: 'app-task-details',
@@ -23,10 +23,13 @@ export class TaskDetailsPage implements OnInit {
     public navCtrl: NavController,
     private refreshService: RefreshService,
     private functionsService: FunctionsService,
-    private popoverCtrl: PopoverController
+    private popoverCtrl: PopoverController,
   ) { }
 
   ngOnInit() {
+  }
+
+  ionViewWillEnter() {
     this.todo = this.dataService.todo;
   }
 
@@ -51,8 +54,8 @@ export class TaskDetailsPage implements OnInit {
     await popover.present();
     const option = (await popover.onDidDismiss()).data;
     if (option == 'edit') this.toEdits();
+    if (option == 'print') this.navCtrl.navigateForward('bluetooth-printer');
     if (option == 'delete') {
-
       const ok = await this.functionsService.genericAlert({ message: ` Do you want to delete ${this.todo.title}?` });
       if (!ok) return;
       this.deleteTodo()
@@ -67,6 +70,7 @@ export class TaskDetailsPage implements OnInit {
     this.dataService.delete(`todos/${this.todo._id}`).subscribe({
       next: (res) => {
         this.refreshService.refreshBS.next({ todo: this.todo, case: false });
+        this.functionsService.genericToast({ message: `Task ${this.todo.title} has been deleted.`, color: 'primary' })
         this.navCtrl.navigateBack('home')
       }, error: err => {
         this.functionsService.genericToast({ message: err.message })

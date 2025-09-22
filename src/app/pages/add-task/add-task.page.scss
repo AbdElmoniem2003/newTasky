@@ -55,8 +55,10 @@ ion-header {
       overflow: hidden;
 
       &.fit-added {
-        width: fit-content;
+        max-width: 375px;
+        max-height: 350px;
         margin: 0 auto;
+        width: 100%;
       }
 
       div.no-img {
@@ -86,15 +88,10 @@ ion-header {
       >app-custom-image,
       >ion-img,
       >img {
-        height: 225px;
         object-fit: fill;
-
-        //for img only
-        margin: 0 auto;
         display: block;
-        // img {
-        //   object-fit: contain;
-        // }
+        height: 350px;
+        width: 100%;
       }
 
     }

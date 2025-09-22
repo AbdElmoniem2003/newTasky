@@ -184,25 +184,25 @@ body.dark {
 
 
 
-  // My Dark Variables
-  --p-color: var(--dark-text);
-  --light-border-color: #BABABA;
-  --ip-color: #7F7F7F;
-  --light-primary: #333754;
-  --dark-text: #dadada;
-  --light-text: #bdb1b1;
-  --details-color: var(--dark-text);
-  --waiting-text: #FF7D53;
-  --waiting-bg: #FFE4F2;
-  --inprogress-text: #5F33E1;
-  --inprogress-bg: #F0ECFF;
-  --finished-text: #0087FF;
-  --finished-bg: #E3F2FF;
-  --segment-checked: white;
-  --profile-bg: #f5f5f5;
-  --dark-profile-text: #2F2F2F99;
-  --light-profile-text: #2F2F2F66;
-  --ion-background-color: #242831;
+  // // My Dark Variables
+  // --p-color: var(--dark-text);
+  // --light-border-color: #BABABA;
+  // --ip-color: #7F7F7F;
+  // --light-primary: #333754;
+  // --dark-text: #dadada;
+  // --light-text: #bdb1b1;
+  // --details-color: var(--dark-text);
+  // --waiting-text: #FF7D53;
+  // --waiting-bg: #FFE4F2;
+  // --inprogress-text: #5F33E1;
+  // --inprogress-bg: #F0ECFF;
+  // --finished-text: #0087FF;
+  // --finished-bg: #E3F2FF;
+  // --segment-checked: white;
+  // --profile-bg: #f5f5f5;
+  // --dark-profile-text: #2F2F2F99;
+  // --light-profile-text: #2F2F2F66;
+  // --ion-background-color: #02153f;
 
 
 
@@ -216,7 +216,7 @@ body.dark {
 
 .ios body.dark {
   // --ion-background-color: #000000;
-  --ion-background-color: #242831;
+  --ion-background-color: #fff;
   --ion-background-color-rgb: 0, 0, 0;
   --ion-text-color: #ffffff;
   --ion-text-color-rgb: 255, 255, 255;
@@ -257,7 +257,7 @@ body.dark {
 
 .md body.dark {
   // --ion-background-color: #121212;
-  --ion-background-color: #242831;
+  --ion-background-color: #fff;
   --ion-background-color-rgb: 18, 18, 18;
   --ion-text-color: #ffffff;
   --ion-text-color-rgb: 255, 255, 255;

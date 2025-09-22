@@ -89,7 +89,7 @@ export class CameraService {
       if (!blob) return;
       const reader = new FileReader();
       reader.readAsDataURL(blob);
-      reader.onload = () => {
+      reader.onloadend = () => {
         resolve(reader.result)
       }
     })

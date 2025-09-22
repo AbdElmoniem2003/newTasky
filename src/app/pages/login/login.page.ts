@@ -38,7 +38,7 @@ export class LoginPage implements OnInit {
 
   login() {
     if (this.loginForm.invalid) {
-      this.functionService.genericToast({ message: 'Complete the From please.', color: 'danger' })
+      this.functionService.genericToast({ message: 'Complete the From please.' })
       return
     }
     this.authService.login(this.loginForm.value);

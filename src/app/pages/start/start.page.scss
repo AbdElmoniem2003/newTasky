@@ -1,22 +1,23 @@
 .container {
   max-width: 768px;
   margin: 0 auto;
-  padding: 0 22px 3em;
   scrollbar-width: none !important;
+
+  >img {
+    // width: 408px;
+    height: 482px;
+    margin: 0 auto;
+    display: block;
+  }
 
 
   .upper-side {
+    padding: 0 22px 3em;
     display: flex;
     flex-flow: column;
     justify-content: center;
     margin-bottom: 23px;
     padding: 0 24px;
-
-    >img {
-      width: 408px;
-      height: 482px;
-      margin: 0 auto;
-    }
 
     .txts {
       display: flex;
@@ -32,6 +33,7 @@
         font-size: 24px;
         line-height: 100%;
         text-align: center;
+        color: var(--dark-text);
       }
 
       p {
@@ -47,7 +49,8 @@
   }
 
   ion-button {
-    // width: 331px;
+    max-width: 331px;
+    width: 100%;
     height: 49px;
     --border-radius: 12px;
     margin: 0 auto;

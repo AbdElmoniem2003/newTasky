@@ -12,6 +12,7 @@
   }
 
   form {
+    max-width: 375px;
     padding-bottom: 32px;
     display: flex;
     flex-flow: column;
@@ -30,6 +31,8 @@
       letter-spacing: 0%;
       text-align: start;
       width: 100%;
+      color: var(--dark-text);
+
     }
 
     .inputs {
@@ -117,6 +120,7 @@
       width: 100%;
 
       ion-button {
+        max-width: 331px;
         width: 100%;
         height: 49px;
         --border-radius: 12px;
@@ -136,6 +140,7 @@
         line-height: 20px;
         letter-spacing: 0.2px;
         text-align: center;
+        color: var(--dark-text);
 
         strong {
           font-family: bold;

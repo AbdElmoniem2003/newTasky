@@ -13,6 +13,7 @@
 
   form {
     padding-bottom: 32px;
+    max-width: 375px;
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -30,6 +31,7 @@
       letter-spacing: 0%;
       text-align: start;
       width: 100%;
+      color: var(--dark-text);
     }
 
     .inputs {
@@ -107,6 +109,10 @@
             --padding-start: 16px;
           }
         }
+
+        ion-select {
+          color: var(--dark-text);
+        }
       }
 
     }
@@ -138,6 +144,7 @@
         line-height: 20px;
         letter-spacing: 0.2px;
         text-align: center;
+        color: var(--dark-text);
 
         strong {
           font-family: bold;

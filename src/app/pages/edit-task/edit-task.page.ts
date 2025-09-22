@@ -22,7 +22,7 @@ export class EditTaskPage implements OnInit {
   editForm: FormGroup
   todoToEdit: TodoData;
   todoImg: Photo;
-  imgToUpload: Blob;
+  resizedBlob: Blob;
   renderImg: string;
   imageKey: string = environment.baseURL + 'images/'
 
@@ -38,7 +38,7 @@ export class EditTaskPage implements OnInit {
 
   ngOnInit() {
     this.todoToEdit = this.dataService.todo;
-    this.renderImg = this.todoToEdit.image != 'path.png' ? `${this.imageKey}${this.todoToEdit.image}` : '../../../assets/imgs/alt-image.svg'
+    this.renderImg = `${this.imageKey}${this.todoToEdit.image}`
     this.initForm();
   }
 
@@ -67,34 +67,22 @@ export class EditTaskPage implements OnInit {
     this.editForm.patchValue({ dueDate: date })
   }
 
-  async addImage(img?: string) {
-    this.todoImg = await this.cameraService.getImage(img);
+  async addImage() {
+    this.todoImg = await this.cameraService.getImage();
+    const imgBlob = await this.cameraService.getImageBlob(this.todoImg.webPath);
+    this.resizedBlob = await this.cameraService.resizeImage(imgBlob);
+    const base64 = await this.cameraService.readImageBase64(this.resizedBlob);
+    this.renderImg = (base64 as string);
 
-    if (!this.todoImg) {
-      console.log('reset')
-      if (this.imgToUpload) {
-        this.renderImg = `${this.imageKey}${this.todoToEdit.image}`
-        this.imgToUpload = null
-      } else {
-        this.renderImg = null;
-        console.log('reset origin')
-      }
-    } else {
-      const imgBlob = await this.cameraService.getImageBlob(this.todoImg.webPath);
-      this.imgToUpload = await this.cameraService.resizeImage(imgBlob);
-      const base64 = await this.cameraService.readImageBase64(this.imgToUpload);
-      this.renderImg = (base64 as string);
-    }
   }
-
 
   uploadImg(): Promise<string> {
     return new Promise((resolve, reject) => {
-      if (!this.imgToUpload) {
+      if (!this.resizedBlob) {
         resolve(this.renderImg ? this.todoToEdit.image : 'path.png')
       } else {
         const formData: FormData = new FormData();
-        formData.append('image', this.imgToUpload);
+        formData.append('image', this.resizedBlob);
         this.dataService.postData(`upload/image`, formData).subscribe({
           next: (res: { image: string }) => {
             resolve(res.image)
@@ -112,7 +100,9 @@ export class EditTaskPage implements OnInit {
       next: (res: TodoData) => {
         console.log(res);
         this.refreshService.refreshBS.next({ todo: res, case: true });
-        this.navCtrl.navigateBack('home')
+        this.dataService.todo = res;
+        this.functionsService.genericToast({ message: 'Edittions Saved', color: 'primary' })
+        this.navCtrl.pop()
       }, error: err => {
         this.functionsService.genericToast({ message: err.error.message })
       }

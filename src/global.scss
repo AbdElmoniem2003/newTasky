@@ -110,15 +110,36 @@ ion-button {
 
 ion-popover.task-options {
   --width: 82px;
-  --height: 97px;
+  --height: fit-content;
   --border-radius: 12px;
   --box-shadow: 1px 4px 16px 0px #00000030;
+
+  &::part(content) {
+    border: none;
+  }
 }
 
 ion-modal.country-modal {
   --width: 375px;
   --border-radius: 1em;
 }
+
+
+ion-alert {
+
+  .alert-button-group {
+    button {
+      border-width: 1px 1px 0 0 !important;
+      border-color: var(--light-primary) !important;
+    }
+
+  }
+}
+
+
+
+
+
 
 ion-header {
   padding-top: var(--ion-safe-area-top, env(safe-area-inset-top, 0px));
@@ -140,6 +161,11 @@ ion-header {
 
 
 
+ion-skeleton-text {
+  --border-radius: 9999px;
+  --background-rgb: 20, 26, 150;
+}
+
 
 
 
@@ -154,19 +180,16 @@ body.dark {
     background: transparent !important;
   }
 
-  .reverse {
-    filter: invert(1);
-  }
 
   ion-alert {
     --background: var(--ion-background-color) !important;
-    --ion-color-primary: var(--dark-text);
+    --ion-text-color: var(--dark-text);
   }
 
   ion-action-sheet {
     --background: var(--ion-background-color) !important;
     --button-background-selected: var(--ion-background-color) !important;
-    --ion-color-primary: var(--dark-text);
+    --ion-text-color: var(--dark-text);
   }
 
 

@@ -9,12 +9,14 @@
     ion-item {
       width: fit-content;
       min-height: 36px;
+      --border-color: var(--dark-text);
 
       &::part(native) {
         --background: var(--ion-background-color);
       }
 
       ion-button {
+        min-width: 36px;
         min-height: 44px;
         --padding-top: 0;
         --padding-start: 0;

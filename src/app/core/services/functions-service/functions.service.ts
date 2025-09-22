@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 import { ActionSheetButton, ActionSheetController, AlertController, ToastController } from "@ionic/angular";
 import { GenericOpts } from "../../interfaces/generic-opts";
-import { AlertOptions } from "@ionic/angular";
 import { Clipboard } from "@capacitor/clipboard";
 import { Capacitor } from "@capacitor/core";
 import { StatusBar, Style } from "@capacitor/status-bar";
@@ -9,16 +8,13 @@ import { EdgeToEdge } from "@capawesome/capacitor-android-edge-to-edge-support";
 
 @Injectable({ providedIn: 'root' })
 
-
 export class FunctionsService {
 
   constructor(
     private toastCtrl: ToastController,
     private alertCtrl: AlertController,
     private actionCtrl: ActionSheetController,
-
   ) { }
-
 
   async genericToast(opts: GenericOpts) {
     let toast = await this.toastCtrl.create({
@@ -33,7 +29,6 @@ export class FunctionsService {
     })
     await toast.present();
   }
-
 
   async genericAlert(opts: GenericOpts) {
     return new Promise<boolean>(async (resolve, reject) => {
@@ -63,7 +58,6 @@ export class FunctionsService {
     await actionSheet.present();
   }
 
-
   checkDarkThemes() {
     const checkDarkOrLight = window.matchMedia('(prefers-color-scheme: dark)');
     // activate dark if dark is the default
@@ -86,7 +80,7 @@ export class FunctionsService {
 
   copyNumber(number: string | number) {
     Clipboard.write({ string: String(number) }).then(() => {
-      this.genericToast({ message: `${number} is Copied.`, color: 'success' })
+      this.genericToast({ message: `${number} is Copied.`, color: 'primary' })
     })
   }
 

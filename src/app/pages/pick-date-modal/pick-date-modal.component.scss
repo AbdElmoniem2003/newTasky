@@ -3,6 +3,7 @@ ion-datetime {
   font-weight: 500;
   font-family: semiBold;
   --background: var(--ion-background-color);
+  color: var(--dark-text);
 
   ion-buttons[slot='buttons'] {
     ion-button {
@@ -11,7 +12,7 @@ ion-datetime {
       font-weight: 700;
 
       --ion-color-primary: var(--inprogress-text);
-      --ion-color-dark: var(--dark-text)
+      --ion-color-dark: var(--dark-text);
     }
   }
 

@@ -14,11 +14,11 @@
 
   <div class="filter">
     <ion-label>My Tasks</ion-label>
-    <ion-segment class="fade-in" [scrollable]="true" value="all" mode="md" (ionChange)="filter($event)">
-      <ion-segment-button value="all">all</ion-segment-button>
-      <ion-segment-button value="inprogress">inprogress</ion-segment-button>
-      <ion-segment-button value="waiting">waiting</ion-segment-button>
-      <ion-segment-button value="finished">finished</ion-segment-button>
+    <ion-segment class="fade-in" [scrollable]="true" [(ngModel)]="filterStatus" mode="md" (ionChange)="getData()">
+      <ion-segment-button [value]="statusEnum.ALL">{{statusEnum.ALL}}</ion-segment-button>
+      <ion-segment-button [value]="statusEnum.INPTOGRESS">{{statusEnum.INPTOGRESS}}</ion-segment-button>
+      <ion-segment-button [value]="statusEnum.WAITING">{{statusEnum.WAITING}}</ion-segment-button>
+      <ion-segment-button [value]="statusEnum.FINISHED">{{statusEnum.FINISHED}}</ion-segment-button>
     </ion-segment>
   </div>
 

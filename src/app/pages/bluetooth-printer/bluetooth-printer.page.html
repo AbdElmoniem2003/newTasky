@@ -1,0 +1,99 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title slot="start">Bluetooth Printer</ion-title>
+    <ion-button slot="end" color="secondary" (click)="navCtrl.pop()">
+      <ion-icon color="primary" name="close-outline"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" pullFactor="0.8" pullMin="60" pullMax="120">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="container">
+
+    @if (isloading) {
+    @for (i of [1,2,3,4]; track $index) {
+    <ion-item style="height: 50px;">
+      <ion-skeleton-text animated=""></ion-skeleton-text>
+    </ion-item>
+    }
+    }
+
+    @if (!isloading&&!isEmpty&&!isError) {
+    <div>
+      <h4>Devices ({{devices.length}}) <span slot="end">pick a printer.</span></h4>
+      <ion-button fill="clear" slot="end" (click)="printPdf()">Print PDF</ion-button>
+    </div>
+    @for (device of devices; track $index) {
+    <div class="ion-activatable printer" (click)="connectNewPrinter(device.address)"
+      [class.connected]="printer?.address==device?.address">
+      <ion-ripple-effect type="bounded"></ion-ripple-effect>
+      <ion-label>Name:- {{device.name}}</ion-label>
+      <ion-label>Address:- {{device.address}}</ion-label>
+    </div>
+    }
+    }
+
+
+    @if (isEmpty) {
+    <div class="empty">No Printers Found</div>
+    }
+    @if (isError) {
+    <div class="empty">Error Occured</div>
+    }
+  </div>
+
+  <ion-buttons>
+    <ion-button class="scan" (click)="startPrinting(todo._id)">
+      <ion-label>Print Now</ion-label>
+    </ion-button>
+    <ion-button class="scan" (click)="discover()">
+      <ion-label>Scan Now</ion-label>
+    </ion-button>
+  </ion-buttons>
+
+  @if(imageInitialized){
+  <div [id]="todo._id" class="todo" #eleToPrint>
+
+    <!-- `${imgKey}${todo.image}`|| -->
+    <!-- '../../../assets/imgs/alt-image.svg' -->
+    <img [src]="`${imgKey}${todo.image}`" alt="">
+
+    <div class="texts fade-in">
+      <ion-label>
+        {{todo.title}}
+      </ion-label>
+      <p>
+        {{todo.desc}}
+      </p>
+    </div>
+
+    <div class="data fade-in">
+      <div>
+
+        <div class="date">
+          <span>End Date</span>
+          <p>{{todo.createdAt|date:'dd MMMM, yyyy'}}</p>
+        </div>
+        <ion-icon src="../../../assets/imgs/calendar.svg"></ion-icon>
+      </div>
+
+      <div>
+        <ion-label>{{todo.status}}</ion-label>
+        <ion-icon src="../../../assets/imgs/down-arrow.svg" slot="end"></ion-icon>
+      </div>
+
+      <div>
+        <ion-icon slot="start" name="flag-outline" color="primary"></ion-icon>
+        <ion-label>{{todo.priority}} Priority</ion-label>
+        <ion-icon slot="end" src="../../../assets/imgs/down-arrow.svg"></ion-icon>
+      </div>
+    </div>
+
+  </div>
+  }
+</ion-content>

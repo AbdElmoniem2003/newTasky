@@ -43,6 +43,10 @@ const routes: Routes = [
   {
     path: 'qr-scanner',
     loadChildren: () => import('./pages/qr-scanner/qr-scanner.module').then( m => m.QrScannerPageModule)
+  },
+  {
+    path: 'bluetooth-printer',
+    loadChildren: () => import('./pages/bluetooth-printer/bluetooth-printer.module').then( m => m.BluetoothPrinterPageModule)
   }
 ];
 

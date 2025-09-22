@@ -56,7 +56,7 @@ export class RegisterPage implements OnInit {
 
   register() {
     if (this.registerForm.invalid) {
-      this.functionService.genericToast({ message: 'Complete the From please.', color: 'danger' })
+      this.functionService.genericToast({ message: 'Complete the From please.' })
       return
     }
     this.authService.register(this.registerForm.value)
