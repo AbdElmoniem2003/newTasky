@@ -59,8 +59,7 @@ export class BluetoothPrinterPage implements OnInit {
     if (Capacitor.getPlatform() !== 'android') return;
 
     const previousConnection = await this.printService.alreadyConnect();
-    if (!previousConnection) this.funcservice.genericToast({ message: 'Please Connect to a Printer' })
-    if (!previousConnection) return;
+    if (!previousConnection) return this.funcservice.genericToast({ message: 'Please Connect to a Printer' });
 
     this.imageInitialized = true;
     setTimeout(async () => {
@@ -84,6 +83,7 @@ export class BluetoothPrinterPage implements OnInit {
     if (!this.printer?.address || !isConnected) {
       this.printer = await CapacitorThermalPrinter.connect({ address: address });
       if (this.printer) this.funcservice.genericToast({ message: `Connected to ${this.printer.name}.`, color: 'primary' });
+      if (!this.printer) this.funcservice.genericToast({ message: `Couldn't connected to ${this.printer.name}.`, color: 'danger' });
     }
   }
 
@@ -91,9 +91,7 @@ export class BluetoothPrinterPage implements OnInit {
   /*==================================== Print PDF */
 
   async printPdf() {
-    this.imageInitialized = true
     await this.printService.printPdf(this.todo)
-    this.imageInitialized = false
   }
 
 

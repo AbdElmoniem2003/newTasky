@@ -51,8 +51,6 @@ export class PrintService {
     })
   }
 
-
-
   discover(): Promise<BluetoothDevice[]> {
     return new Promise(async (resolve) => {
       let isDiscover = false;
@@ -74,7 +72,6 @@ export class PrintService {
             listener.remove();
             await CapacitorThermalPrinter.stopScan();
             resolve([]);
-            alert(`Scanning is over after 5 seconds`)
           }
         }, 5000)
       }
@@ -90,7 +87,6 @@ export class PrintService {
     })
   }
 
-
   async alreadyConnect(): Promise<boolean> {
     return new Promise(async (resolve) => {
       CapacitorThermalPrinter.isConnected().then(async isConnected => {
@@ -99,7 +95,7 @@ export class PrintService {
     })
   }
 
-
+  // prepare image for bluetooth printing
   async prepareImage(eleID: string) {
     return new Promise<string>(async (resolve) => {
       const ele: HTMLElement = document.getElementById(eleID);
@@ -115,6 +111,7 @@ export class PrintService {
     })
   }
 
+  // for openning a pdf file on web   ||  download a pdf file on mobile and then open it directly
   async printPdf(todo: TodoData) {
     (pdfMake as any).vfs = pdfFonts.vfs;
     const blob = await this.cameraService.getImageBlob('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/51158316-fd7e-48ca-b5fe-8542e9dfe357/dj2vk42-2fb14d4b-9687-46df-a393-b932a7f836a5.png/v1/fill/w_1354,h_590,q_70,strp/one_piece_void_century_mural_by_bodskih_dj2vk42-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTc0MyIsInBhdGgiOiJcL2ZcLzUxMTU4MzE2LWZkN2UtNDhjYS1iNWZlLTg1NDJlOWRmZTM1N1wvZGoydms0Mi0yZmIxNGQ0Yi05Njg3LTQ2ZGYtYTM5My1iOTMyYTdmODM2YTUucG5nIiwid2lkdGgiOiI8PTQwMDAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.ti4KLgvHS8r_ilRZOQJu17dY9fGlSlzEzPSPoYI8cC4');
@@ -210,7 +207,7 @@ export class PrintService {
           path: `${todo.title}-${Date.now()}.pdf`,
         });
         resolve(result);
-        this.funcservice.genericToast({ message: `PDF of ${todo.title} has been created.`, color: 'primary' })
+        this.funcservice.genericToast({ message: `PDF of ${todo.title} has been downloaded.`, color: 'primary' })
       };
       reader.readAsDataURL(blob);
     })
@@ -222,7 +219,7 @@ export class PrintService {
       filePath: uri,
       contentType: 'application/pdf',
       openWithDefault: true,
-    }).then(() => alert(uri)).catch((err) => alert(err))
+    });
   }
 
 }
