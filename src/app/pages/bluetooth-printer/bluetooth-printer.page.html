@@ -15,19 +15,21 @@
 
   <div class="container">
 
+    <div>
+      <h4>Devices ({{devices.length}}) <span slot="end">pick a printer.</span></h4>
+      <ion-button fill="clear" slot="end" (click)="printPdf()">Print PDF</ion-button>
+    </div>
+
     @if (isloading) {
     @for (i of [1,2,3,4]; track $index) {
-    <ion-item style="height: 50px;">
+    <ion-item class="loading-item">
       <ion-skeleton-text animated=""></ion-skeleton-text>
     </ion-item>
     }
     }
 
+
     @if (!isloading&&!isEmpty&&!isError) {
-    <div>
-      <h4>Devices ({{devices.length}}) <span slot="end">pick a printer.</span></h4>
-      <ion-button fill="clear" slot="end" (click)="printPdf()">Print PDF</ion-button>
-    </div>
     @for (device of devices; track $index) {
     <div class="ion-activatable printer" (click)="connectNewPrinter(device.address)"
       [class.connected]="printer?.address==device?.address">

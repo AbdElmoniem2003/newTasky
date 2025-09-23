@@ -73,9 +73,9 @@ export class FunctionsService {
   async handleStatusBar(isDark: boolean) {
     if (Capacitor.getPlatform() == 'web') return;
     await EdgeToEdge.enable();
-    await StatusBar.setBackgroundColor({ color: isDark ? "#242831" : "#ffffff" });
-    await StatusBar.setStyle({ style: isDark ? Style.Dark : Style.Light });
-    await EdgeToEdge.setBackgroundColor({ color: isDark ? "#242831" : "#ffffff" })
+    await StatusBar.setBackgroundColor({ color: isDark ? "#ffffff" : "#ffffff" });
+    await StatusBar.setStyle({ style: isDark ? Style.Light : Style.Light });
+    await EdgeToEdge.setBackgroundColor({ color: isDark ? "#ffffff" : "#ffffff" })
   }
 
   copyNumber(number: string | number) {

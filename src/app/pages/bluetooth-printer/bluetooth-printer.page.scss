@@ -161,8 +161,6 @@ ion-header {
         letter-spacing: 0.2px;
       }
     }
-
-
   }
 }
 
@@ -181,5 +179,17 @@ ion-buttons {
     --ion-color-primary: var(--dark-text);
     color: var(--dark-text);
     text-transform: capitalize;
+  }
+}
+
+.loading-item {
+  height: 50px;
+  border-radius: 16px;
+  --border-radius: 16px;
+  overflow: hidden;
+
+  ion-skeleton-text {
+    --border-radius: 9999px;
+    --background-rgb: 20, 26, 150;
   }
 }

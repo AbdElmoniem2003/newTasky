@@ -45,6 +45,7 @@ export class BluetoothPrinterPage implements OnInit {
 
   async discover(ev?: any) {
 
+    this.showLoading()
     if (Capacitor.getPlatform() !== 'android') {
       this.showError(ev);
       return;
