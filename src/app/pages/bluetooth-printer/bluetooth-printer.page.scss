@@ -187,8 +187,11 @@ ion-buttons {
   border-radius: 16px;
   --border-radius: 16px;
   overflow: hidden;
+  background-color: transparent;
+  --background: transparent;
 
   ion-skeleton-text {
+    height: 50px;
     --border-radius: 9999px;
     --background-rgb: 20, 26, 150;
   }
