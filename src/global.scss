@@ -145,6 +145,11 @@ ion-header {
   padding-top: var(--ion-safe-area-top, env(safe-area-inset-top, 0px));
 
   ion-toolbar {
+
+    &::part(background) {
+      border-color: transparent !important;
+    }
+
     ion-label {
       padding-left: 8px;
     }
